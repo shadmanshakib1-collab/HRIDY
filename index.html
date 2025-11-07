@@ -10,7 +10,7 @@
     * { margin:0; padding:0; box-sizing:border-box; }
     html,body { font-family:'Poppins',sans-serif; color:white; background:#000; overflow-x:hidden; scroll-behavior:smooth; }
 
-    /* TINY ONE-LINE NAV – invisible luxury */
+    /* MICRO NAV */
     .micro-nav {
       position:fixed;
       top:18px; left:50%;
@@ -30,7 +30,7 @@
     }
     .micro-nav a:hover { opacity:0.4; }
 
-    /* SECTION BASE */
+    /* SECTIONS */
     .section{position:relative;height:100vh;background:center/cover no-repeat;overflow:hidden;}
     .section::after{content:'';position:absolute;inset:0;z-index:1;opacity:0.9;pointer-events:none;}
 
@@ -73,6 +73,35 @@
     .shop-btn:hover{background:rgba(255,255,255,0.2);border-color:rgba(255,255,255,0.6);transform:translateY(-3px);}
     @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(255,255,255,0.1);}70%{box-shadow:0 0 0 20px rgba(255,255,255,0);}100%{box-shadow:0 0 0 0 rgba(255,255,255,0);}}
 
+    /* THIN END PAGE */
+    .endpage {
+      position: relative;
+      height: 260px;
+      background: #000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0 40px;
+      font-weight: 300;
+      line-height: 1.8;
+      z-index: 10;
+    }
+    .endpage a {
+      color: white;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(255,255,255,0.3);
+      padding-bottom: 2px;
+      transition: all .3s ease;
+    }
+    .endpage a:hover {
+      opacity: 0.6;
+      border-color: white;
+    }
+    .credit { font-size: 13px; letter-spacing: 1px; opacity: 0.8; }
+    .note { font-size: 9px; letter-spacing: 0.5px; opacity: 0.4; margin-top: 30px; }
+
     /* RESPONSIVE */
     @media(max-width:1600px){.main-title{font-size:280px;}.shop-title{font-size:100px;}}
     @media(max-width:1440px){.main-title{font-size:240px;}.shop-title{font-size:90px;}}
@@ -83,17 +112,21 @@
       .micro-nav a{margin:0 16px;font-size:8px;}
       .shop-title{font-size:70px;}
       #hero,#about,#shop{background-attachment:scroll;}
+      .endpage{height:300px;padding:0 20px;}
+      .credit{font-size:12px;}
+      .note{font-size:8px;}
     }
     @media(max-width:480px){
       .main-title{font-size:96px;}.motto{font-size:11px;}
       .micro-nav a{margin:0 12px;font-size:7px;letter-spacing:3px;}
       .shop-title{font-size:50px;}
+      .credit{font-size:11px;}
     }
   </style>
 </head>
 <body>
 
-  <!-- MICRO NAV – one line, tiny, floating -->
+  <!-- MICRO NAV -->
   <div class="micro-nav">
     <a href="#hero">home</a>
     <a href="#lavender">lavender</a>
@@ -133,7 +166,7 @@
   <section id="about" class="section">
     <div class="about-content">
       <p class="about-text">
-        HRIDY is a unique perfume brand blending the essences of lavender, honey, and blood to evoke depth, passion, and allure. Each fragrance captures a raw harmony between nature with calm, sweetness, and intensity. HRIDY celebrates scent as an emotion beyond fragrance.
+        HRIDY is a unique perfume brand blending the essences of lavender, honey, and blood to evoke depth, passion, and allure. Each fragrance captures a raw harmony between nature and calm, sweetness, and intensity. HRIDY celebrates scent as an emotion beyond fragrance.
       </p>
     </div>
   </section>
@@ -145,6 +178,19 @@
       <a href="#" class="shop-btn">Shop Now</a>
     </div>
   </section>
+
+  <!-- THIN END PAGE -->
+  <footer class="endpage">
+    <div class="credit">
+      Shadman Shourov<br>
+      DESIGN & DEVELOPMENT (HTML/CSS/JS)<br>
+      <a href="https://www.behance.net/shadmanshourov" target="_blank">https://www.behance.net/shadmanshourov</a>
+    </div>
+    <div class="note">
+      note: all images are derived from pexels.com for non-financial purpose.<br>
+      all rights reserved to the owners.
+    </div>
+  </footer>
 
   <script>
     // Letter-by-letter
