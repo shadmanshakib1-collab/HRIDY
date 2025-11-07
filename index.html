@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HRIDY</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500&family=Poppins:wght@200;300;400&display=swap" rel="stylesheet">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>blood droplet</text></svg>">
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html,body { font-family:'Poppins',sans-serif; color:white; background:#000; overflow-x:hidden; scroll-behavior:smooth; }
+
+    /* TINY ONE-LINE NAV – invisible luxury */
+    .micro-nav {
+      position:fixed;
+      top:18px; left:50%;
+      transform:translateX(-50%);
+      z-index:9999;
+      font-size:10px;
+      font-weight:300;
+      letter-spacing:5px;
+      text-transform:uppercase;
+      opacity:0.7;
+    }
+    .micro-nav a {
+      color:white;
+      text-decoration:none;
+      margin:0 26px;
+      transition:opacity .4s ease;
+    }
+    .micro-nav a:hover { opacity:0.4; }
+
+    /* SECTION BASE */
+    .section{position:relative;height:100vh;background:center/cover no-repeat;overflow:hidden;}
+    .section::after{content:'';position:absolute;inset:0;z-index:1;opacity:0.9;pointer-events:none;}
+
+    /* HERO */
+    #hero{background-image:url('https://images.pexels.com/photos/17094118/pexels-photo-17094118.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&dpr=2');background-attachment:fixed;}
+    #hero::after{background:linear-gradient(to bottom,rgba(0,0,0,0.3),rgba(0,0,0,0.6));}
+    .center-content{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;z-index:10;width:100%;}
+    .main-title{font-family:'Cinzel',serif;font-weight:500;font-size:320px;text-transform:uppercase;line-height:0.88;margin-bottom:16px;}
+    .main-title span{display:inline-block;opacity:0;transform:translateY(60px);transition:opacity .8s ease,transform .8s ease;}
+    .motto{font-weight:200;font-size:18px;letter-spacing:12px;text-transform:lowercase;opacity:0;transform:translateY(30px);transition:opacity 1.8s ease .3s,transform 1.8s ease .3s;}
+    .motto.visible{opacity:0.7;transform:translateY(0);}
+
+    /* SCENTS */
+    .section-title{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-weight:200;font-size:28px;letter-spacing:8px;text-transform:lowercase;opacity:0;z-index:10;transition:opacity 1.2s ease,transform 1.2s ease;}
+    .section-title.visible{opacity:0.8;transform:translate(-50%,-50%) translateY(-10px);}
+
+    #lavender{background-image:url('https://images.pexels.com/photos/21574947/pexels-photo-21574947.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&dpr=2');}
+    #lavender::after{background:linear-gradient(135deg,rgba(110,80,150,0.6),rgba(0,0,0,0.7));}
+    #honey{background-image:url('https://images.pexels.com/photos/11711832/pexels-photo-11711832.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&dpr=2');}
+    #honey::after{background:linear-gradient(135deg,rgba(180,120,40,0.6),rgba(0,0,0,0.7));}
+    #blood{background-image:url('https://images.pexels.com/photos/30618765/pexels-photo-30618765.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&dpr=2');}
+    #blood::after{background:linear-gradient(135deg,rgba(140,20,40,0.7),rgba(0,0,0,0.8));}
+    .blood-drip{position:absolute;top:-50px;left:50%;width:4px;height:100px;background:#8B0000;opacity:0;animation:drip 6s infinite;transform:translateX(-50%);z-index:11;}
+    @keyframes drip{0%,80%{opacity:0;transform:translateX(-50%) translateY(-100px);}85%{opacity:0.8;transform:translateX(-50%) translateY(20px);}100%{opacity:0;transform:translateX(-50%) translateY(120px) scaleY(3);}}
+
+    /* ABOUT */
+    #about{background-image:url('https://images.pexels.com/photos/16214724/pexels-photo-16214724.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&dpr=2');background-attachment:fixed;}
+    #about::after{background:linear-gradient(135deg,rgba(40,40,80,0.7),rgba(0,0,0,0.85));}
+    .about-content{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);max-width:800px;padding:0 40px;text-align:center;z-index:10;opacity:0;transition:opacity 1.5s ease;}
+    .about-content.visible{opacity:1;}
+    .about-text{font-weight:200;font-size:18px;line-height:1.9;letter-spacing:1.5px;opacity:0.85;}
+
+    /* SHOP */
+    #shop{background-image:url('https://images.pexels.com/photos/9606931/pexels-photo-9606931.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&dpr=2');background-attachment:fixed;}
+    #shop::after{background:linear-gradient(135deg,rgba(90,40,130,0.7),rgba(0,0,0,0.85));}
+    .shop-content{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;z-index:10;width:100%;opacity:0;transition:opacity 1.5s ease;}
+    .shop-content.visible{opacity:1;}
+    .shop-title{font-family:'Cinzel',serif;font-weight:500;font-size:120px;text-transform:uppercase;letter-spacing:8px;margin-bottom:30px;}
+    .shop-btn{display:inline-block;padding:18px 60px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.3);color:white;font-size:16px;font-weight:300;letter-spacing:4px;text-transform:uppercase;text-decoration:none;backdrop-filter:blur(10px);transition:all .4s ease;animation:pulse 4s infinite;box-shadow:0 0 0 0 rgba(255,255,255,0.1);}
+    .shop-btn:hover{background:rgba(255,255,255,0.2);border-color:rgba(255,255,255,0.6);transform:translateY(-3px);}
+    @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(255,255,255,0.1);}70%{box-shadow:0 0 0 20px rgba(255,255,255,0);}100%{box-shadow:0 0 0 0 rgba(255,255,255,0);}}
+
+    /* RESPONSIVE */
+    @media(max-width:1600px){.main-title{font-size:280px;}.shop-title{font-size:100px;}}
+    @media(max-width:1440px){.main-title{font-size:240px;}.shop-title{font-size:90px;}}
+    @media(max-width:1024px){.main-title{font-size:190px;}.micro-nav a{margin:0 20px;font-size:9px;}.shop-title{font-size:80px;}}
+    @media(max-width:768px){
+      .main-title{font-size:140px;}.motto{font-size:14px;}
+      .micro-nav{top:14px;letter-spacing:4px;}
+      .micro-nav a{margin:0 16px;font-size:8px;}
+      .shop-title{font-size:70px;}
+      #hero,#about,#shop{background-attachment:scroll;}
+    }
+    @media(max-width:480px){
+      .main-title{font-size:96px;}.motto{font-size:11px;}
+      .micro-nav a{margin:0 12px;font-size:7px;letter-spacing:3px;}
+      .shop-title{font-size:50px;}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- MICRO NAV – one line, tiny, floating -->
+  <div class="micro-nav">
+    <a href="#hero">home</a>
+    <a href="#lavender">lavender</a>
+    <a href="#honey">honey</a>
+    <a href="#blood">blood</a>
+    <a href="#about">about</a>
+    <a href="#shop">shop</a>
+  </div>
+
+  <!-- HERO -->
+  <section id="hero" class="section">
+    <div class="center-content">
+      <h1 class="main-title" aria-label="HRIDY">
+        <span>H</span><span>R</span><span>I</span><span>D</span><span>Y</span>
+      </h1>
+      <p class="motto">aroma of aroma</p>
+    </div>
+  </section>
+
+  <!-- LAVENDER -->
+  <section id="lavender" class="section">
+    <div class="section-title">lavender</div>
+  </section>
+
+  <!-- HONEY -->
+  <section id="honey" class="section">
+    <div class="section-title">honey</div>
+  </section>
+
+  <!-- BLOOD -->
+  <section id="blood" class="section">
+    <div class="section-title">blood</div>
+    <div class="blood-drip"></div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="section">
+    <div class="about-content">
+      <p class="about-text">
+        HRIDY is a unique perfume brand blending the essences of lavender, honey, and blood to evoke depth, passion, and allure. Each fragrance captures a raw harmony between nature with calm, sweetness, and intensity. HRIDY celebrates scent as an emotion beyond fragrance.
+      </p>
+    </div>
+  </section>
+
+  <!-- SHOP -->
+  <section id="shop" class="section">
+    <div class="shop-content">
+      <h2 class="shop-title">Shop</h2>
+      <a href="#" class="shop-btn">Shop Now</a>
+    </div>
+  </section>
+
+  <script>
+    // Letter-by-letter
+    const letters = document.querySelectorAll('.main-title span');
+    setTimeout(() => {
+      letters.forEach((l,i) => setTimeout(() => {
+        l.style.opacity = '1';
+        l.style.transform = 'translateY(0)';
+      }, i*120));
+      setTimeout(() => document.querySelector('.motto').classList.add('visible'), letters.length*120 + 300);
+    }, 300);
+
+    // Scroll reveals
+    const observer = new IntersectionObserver(e => e.forEach(en => {
+      if (en.isIntersecting) {
+        const el = en.target.querySelector('.section-title, .about-content, .shop-content');
+        if (el) el.classList.add('visible');
+      }
+    }), { threshold: 0.5 });
+    document.querySelectorAll('.section').forEach(s => { if(s.id !== 'hero') observer.observe(s); });
+  </script>
+</body>
+</html>
